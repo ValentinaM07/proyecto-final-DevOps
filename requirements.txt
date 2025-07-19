@@ -1,4 +1,11 @@
+
 fastapi
 uvicorn
 pydantic
 prometheus_client
+
+fastapi
+uvicorn[standard]
+pytest 
+httpx 
+

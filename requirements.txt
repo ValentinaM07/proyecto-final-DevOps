@@ -1,5 +1,10 @@
 
 fastapi
+uvicorn[standard]
+prometheus_fastapi_instrumentator
+
+
+fastapi
 uvicorn
 pydantic
 prometheus_client

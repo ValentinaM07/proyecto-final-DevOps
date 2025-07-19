@@ -25,6 +25,7 @@ jobs:
 
       - name: Run tests
         run: |
+          export PYTHONPATH="${{ github.workspace }}"
           pytest
 
       - name: Build Docker image

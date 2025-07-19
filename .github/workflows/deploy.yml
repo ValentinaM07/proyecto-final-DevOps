@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ ci-cd ]
+    branches: [ci-cd]
   pull_request:
-    branches: [ ci-cd ]
+    branches: [ci-cd]
 
 jobs:
   build:
@@ -19,9 +19,10 @@ jobs:
         with:
           python-version: 3.10
 
-      - name: Install dependencies
+      - name: Install dependencies from requirements.txt
         run: |
-          pip install fastapi uvicorn
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Build Docker image
         run: docker build -t fastapi-app .

@@ -10,3 +10,7 @@ app = FastAPI(
 
 app.include_router(main_router)
 setup_metrics(app)
+
+@app.get("/")
+def read_root():
+    return {"message": "API activa"}

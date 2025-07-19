@@ -11,32 +11,21 @@ services:
     volumes:
       - .:/code
     command: ["uvicorn", "run:app", "--host", "0.0.0.0", "--port", "8000"]
-  
+
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     container_name: grafana
     ports:
       - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
 
-  nexus:
-    image: sonatype/nexus3
-    container_name: nexus
-    ports:
-      - "8081:8081"
-    volumes:
-      - nexus-data:/nexus-data
-
-volumes:
-  grafana-data:
-  nexus-data:
 

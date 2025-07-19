@@ -11,6 +11,8 @@ services:
     volumes:
       - .:/code
     command: ["uvicorn", "run:app", "--host", "0.0.0.0", "--port", "8000"]
+    networks:
+      - devops_net
 
   nexus:
     image: sonatype/nexus3:latest
@@ -20,6 +22,8 @@ services:
     volumes:
       - nexus-data:/nexus-data
     restart: unless-stopped
+    networks:
+      - devops_net
 
   prometheus:
     image: prom/prometheus:latest
@@ -30,6 +34,8 @@ services:
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:
       - "9090:9090"
+    networks:
+      - devops_net
 
   grafana:
     image: grafana/grafana:latest
@@ -40,10 +46,16 @@ services:
       - grafana-storage:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - devops_net
 
 volumes:
   nexus-data:
   grafana-storage:
+
+networks:
+  devops_net:
+    driver: bridge
 
 
 

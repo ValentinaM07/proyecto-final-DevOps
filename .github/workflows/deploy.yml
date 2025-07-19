@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ ci-cd ]
+  pull_request:
+    branches: [ ci-cd ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          pip install fastapi uvicorn
+
+      - name: Build Docker image
+        run: docker build -t fastapi-app .
+
+      - name: List Docker images
+        run: docker images

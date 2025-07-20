@@ -1,4 +1,16 @@
+
+fastapi
+uvicorn[standard]
+prometheus_fastapi_instrumentator
+
+
+fastapi
+uvicorn
+pydantic
+prometheus_client
+
 fastapi
 uvicorn[standard]
 pytest 
 httpx 
+

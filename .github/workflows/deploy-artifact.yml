@@ -21,4 +21,4 @@ jobs:
         run: |
           curl -v --user ${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }} \
             --upload-file proyecto.zip \
-            http://ec2-44-202-71-255.compute-1.amazonaws.com:8081/repository/proyecto_final/proyecto.zip
+            http://ec2-34-207-158-202.compute-1.amazonaws.com:8081/repository/proyecto_final/proyecto.zip

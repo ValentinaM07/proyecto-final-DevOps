@@ -1,0 +1,24 @@
+name: Deploy Artifact to Nexus
+
+on:
+  push:
+    branches:
+      - ci-cd
+
+jobs:
+  upload-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Zip source code
+        run: |
+          zip -r proyecto.zip . -x "*.git*"
+
+      - name: Upload to Nexus
+        run: |
+          curl -v --user ${{ secrets.NEXUS_USERNAME }}:${{ secrets.NEXUS_PASSWORD }} \
+            --upload-file proyecto.zip \
+            http://ec2-44-202-71-255.compute-1.amazonaws.com:8081/repository/proyecto_final/proyecto.zip
